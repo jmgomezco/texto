@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>texto</title>
+    
+    <link rel="icon" type="image/png" href="https://nhug-cie10-assets.s3.us-east-1.amazonaws.com/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="https://nhug-cie10-assets.s3.us-east-1.amazonaws.com/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="https://nhug-cie10-assets.s3.us-east-1.amazonaws.com/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://nhug-cie10-assets.s3.us-east-1.amazonaws.com/favicon/apple-touch-icon.png" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* (Todo tu CSS aquí, sin cambios) */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            font-family: Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 25cm;
+            min-height: 100vh;
+            margin: 4cm auto 0;
+            padding: 0 20px;
+        }
+        h2 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: clamp(24px, 6vw, 36px);
+            font-weight: 400;
+            font-style: italic;
+            margin: 0 0 clamp(40px, 8vh, 80px) 0;
+            padding: 0;
+            line-height: 0.8;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            align-self: flex-start;
+        }
+        .nhug {
+            color: #1E5AA8;
+        }
+        .ai {
+            color: #6495ED;
+        }
+        .instrucciones {
+            width: 100%;
+            font-size: clamp(16px, 4vw, 20px);
+            color: black;
+            text-align: left;
+            margin-bottom: clamp(15px, 3vh, 0.5cm);
+            align-self: flex-start;
+        }
+        .caja-texto {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid #6495ED;
+            border-radius: 15px;
+            font-family: Verdana, sans-serif;
+            font-size: clamp(16px, 4vw, 20px);
+            text-align: left;
+            box-sizing: border-box;
+            align-self: flex-start;
+        }
+        .caja-texto::placeholder {
+            color: #A2CADF;
+        }
+        .caja-texto:focus {
+            outline: none;
+            border-color: #6495ED;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #6495ED;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+            align-self: center;
+        }
+        .error-message {
+            color: #d32f2f;
+            font-size: clamp(14px, 3vw, 18px);
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+            align-self: center;
+            width: 100%;
+            padding: 10px;
+            background-color: #ffebee;
+            border-radius: 8px;
+            border: 1px solid #ffcdd2;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                margin-top: clamp(5px, 1vh, 20px);
+                padding: clamp(1px, 1vh, 20px) 20px;
+            }
+            h2 {
+                font-size: clamp(20px, 4vw, 32px);
+                margin-bottom: clamp(15px, 5vh, 50px);
+            }
+            .instrucciones {
+                font-size: clamp(13px, 3vw, 18px);
+                margin-bottom: clamp(6px, 2vh, 20px);
+            }
+            .caja-texto {
+                font-size: clamp(13px, 3vw, 18px);
+                padding: clamp(5px, 1vh, 12px);
+                border-radius: clamp(8px, 1.5vh, 15px);
+            }
+            .spinner {
+                width: clamp(35px, 6vh, 60px);
+                height: clamp(35px, 6vh, 60px);
+                border-width: clamp(2px, 0.5vh, 4px);
+                margin: clamp(8px, 2vh, 20px) auto;
+            }
+            .error-message {
+                font-size: clamp(11px, 2.5vw, 16px);
+                margin-top: clamp(6px, 1.5vh, 15px);
+            }
+        }
+        @media (max-width: 1023px) {
+            .container {
+                margin-top: clamp(1.5cm, 8vh, 4cm);
+                padding: 0 clamp(10px, 4vw, 20px);
+            }
+            h2 {
+                font-size: clamp(24px, 6vw, 36px);
+                margin-bottom: clamp(12px, 4vh, 20px);
+            }
+            .instrucciones {
+                font-size: clamp(16px, 4vw, 20px);
+                margin-bottom: clamp(0.3cm, 3vh, 0.5cm);
+            }
+            .caja-texto {
+                font-size: clamp(16px, 4vw, 20px);
+                padding: clamp(8px, 2vw, 12px);
+                border-radius: clamp(12px, 3vw, 15px);
+            }
+            .spinner {
+                width: clamp(40px, 8vw, 60px);
+                height: clamp(40px, 8vw, 60px);
+                border-width: clamp(3px, 1vw, 4px);
+                margin: clamp(12px, 3vh, 20px) auto;
+            }
+            .error-message {
+                font-size: clamp(14px, 3vw, 18px);
+                margin-top: clamp(10px, 2.5vh, 15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><span class="nhug">Nhug</span><span class="ai">Ai</span></h2>
+        <div class="instrucciones">
+            Introduce un texto descriptivo para el código CIE-10 que deseas encontrar, luego pulsa Intro.
+        </div>
+        <input 
+            type="text" 
+            class="caja-texto" 
+            id="textoInput"
+            autofocus
+            placeholder="Sospecha de enfermedad mitocondrial"
+        >
+        <div class="error-message" id="errorMessage"></div>
+        <div class="spinner" id="spinner"></div>
+    </div>
+
+<script>
+const input = document.getElementById('textoInput');
+const error = document.getElementById('errorMessage');
+const spinner = document.getElementById('spinner');
+
+// Scroll para mantener el input visible en móviles
+if ('visualViewport' in window) {
+    window.visualViewport.addEventListener('resize', () => {
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+}
+
+function showError(message) {
+    error.textContent = message;
+    error.style.display = 'block';
+}
+
+function hideMessages() {
+    error.style.display = 'none';
+    spinner.style.display = 'none';
+}
+
+input.addEventListener('input', () => {
+    if (input.value.trim()) hideMessages();
+});
+
+input.addEventListener('keydown', async (e) => {
+    if (e.key !== 'Enter') return;
+    
+    e.preventDefault();
+    const texto = input.value.trim().substring(0, 200);
+    
+    if (!texto) return;
+    
+    spinner.style.display = 'block';
+    error.style.display = 'none';
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    
+    try {
+      const res = await fetch('https://j48pvm8lql.execute-api.us-east-1.amazonaws.com/post/texto', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({texto}),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(`Error del servidor: ${res.status} ${errorText}`);
+      }
+      const data = await res.json();
+      if (data.sessionId) {
+          window.location.href = `/select?sessionId=${data.sessionId}`;
+      } else {
+          throw new Error('No se recibió sessionId del servidor');
+      }
+    } catch (err) {
+        clearTimeout(timeoutId);
+        console.error('Error:', err);
+        if (err.name === 'AbortError') {
+            showError('Tiempo de espera agotado. El texto puede ser muy largo o el servidor está lento. Intenta con un texto más corto.');
+        } else if (err.message.includes('Failed to fetch')) {
+            showError('Error de conexión. Verifica tu internet e intenta nuevamente.');
+        } else if (err.message.includes('Error del servidor')) {
+            showError('Error interno del servidor. Por favor, intenta más tarde.');
+        } else {
+            showError('Error al procesar la solicitud: ' + err.message);
+        }
+    }
+});
+</script>
+</body>
+</html>
